@@ -1,0 +1,75 @@
+page-login {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  ion-content{
+    background:#fff !important;
+  }
+  .midcon{
+    width:90%;
+    height:440px;
+    margin-left:5%;
+    top:50%;
+    margin-top:-220px;
+    position: absolute;
+  }
+  .logo{
+    width:100%;
+    height:200px;
+    padding-top:120px;
+    background-size: 100px 100px;
+    background-repeat:no-repeat;
+    background-position:top center;
+    text-align: center;
+    color:#494949;
+    font-size:15px;
+  }
+  .logintx{
+    width:100%;
+    border:0px;
+    font-size: 18px;
+    padding:5px;
+    border-bottom: 1px solid #12b8f6;
+    margin:10px 0px;
+  }
+  .forget{
+    background:none;
+    border:0;
+    color:#494949;
+    font-size:12px;
+    float:right;
+  }
+  .loginbt{
+    width:100%;
+    height:40px;
+    color:#fff;
+    background-color:#12b8f6;
+    border:0px;
+    margin-top:20px;
+  }
+  .freebt{
+    background-color:#cacaca;
+  }
+  .loginpw{
+    width:100%;
+    height:250px;
+    top:50%;
+    margin-top: -20px;
+    position: absolute;
+    background-color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    .pwc{
+      ion-icon{
+        font-size:1.5em;
+      }
+    }
+  }
+  .pwtx{
+    width:80%;
+  }
+  .pwbt{
+    width:60%;
+  }
+}

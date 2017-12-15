@@ -1,0 +1,26 @@
+<ion-content no-padding>
+  <div class="midcon">
+    <div class="logo" style="background-image:url(assets/images/logo.png)">百题斩账号登录</div>
+    <input type="text" class="logintx" placeholder="用户名/邮箱" [(ngModel)]="account"/>
+    <input type="password" class="logintx" placeholder="密码" [(ngModel)]="password"/>
+    <input type="button" class="forget" value="忘记密码" (click)="goForgetPwd()"/>
+    <input type="button" class="forget" value="修改密码" (click)="goModifyPwd()"/>
+    <button ion-button round class="loginbt" (click)="doLogin()">登录</button>
+    <button ion-button round class="loginbt freebt" (click)="doTryOutLogin()">免费试用</button>
+  </div>
+  <div *ngIf="pwm" class="loginpw">
+    <div class="pwc" (click)="resetData()"><ion-icon name="md-close"></ion-icon></div>
+    <input type="text" class="logintx pwtx" placeholder="请输入用户名" [(ngModel)]="pwmuser"/>
+    <input type="password" class="logintx pwtx" placeholder="请输入旧密码" [(ngModel)]="pwmopw"/>
+    <input type="password" class="logintx pwtx" placeholder="请输入新密码" [(ngModel)]="pwmnpw"/>
+    <button ion-button round class="loginbt pwbt" (click)="doModifyPwdByOldPwd()">确认</button>
+  </div>
+  <div *ngIf="pwf" class="loginpw">
+    <div class="pwc" (click)="resetData()"><ion-icon name="md-close"></ion-icon></div>
+    <input type="text" class="logintx pwtx" placeholder="请输入用户名" [(ngModel)]="pwfuser"/>
+    <input type="text" class="logintx pwtx" placeholder="请输入验证码" [(ngModel)]="pwfyzm" *ngIf="pwfs"/>
+    <input type="password" class="logintx pwtx" placeholder="请输入新密码" [(ngModel)]="pwfpwd" *ngIf="pwfs"/>
+    <button ion-button round class="loginbt pwbt" (click)="doGetYzm()" *ngIf="!pwfs">发送验证码</button>
+    <button ion-button round class="loginbt pwbt" (click)="doModifyPwdByYzm()" *ngIf="pwfs">确认</button>
+  </div>
+</ion-content>

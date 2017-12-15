@@ -1,0 +1,17 @@
+page-tabs {
+    ion-tabs .tabbar{
+        background-color:color($colors,btm) !important;
+        border-top:1px solid #a7a7ab !important;
+    }
+    ion-tabs .tab-button[aria-selected=true]{
+        .tab-button-icon {
+            color: #488aff !important;
+        }
+        .tab-button-text {
+            color: #488aff !important;
+        }
+    }
+    ion-tabs .tab-button:hover{
+        color:inherit !important;
+    }
+}

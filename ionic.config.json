@@ -1,0 +1,8 @@
+{
+  "name": "biz-ionic-v3-x5-android",
+  "app_id": "",
+  "type": "ionic-angular",
+  "integrations": {
+    "cordova": {}
+  }
+}

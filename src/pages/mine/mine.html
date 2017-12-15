@@ -1,0 +1,29 @@
+<ion-content no-padding>
+  <ion-list>
+    <ion-item class="user">
+      <img src="assets/images/user.png"/>
+      <p>{{userId}}</p>
+    </ion-item>
+  </ion-list>
+  <ion-list class="minelist" no-lines>
+    <button ion-item (click)="goMsg()">
+      <ion-label>我的消息</ion-label>
+      <ion-badge item-end color="danger" *ngIf="newmsg">new</ion-badge>
+    </button>
+    <button ion-item (click)="goFind()">
+      <ion-label>题目搜索</ion-label>
+    </button>
+  </ion-list>
+  <ion-list class="minelist" no-lines>
+    <button ion-item (click)="goVideo()">
+      <ion-label>离线视频</ion-label>
+    </button>
+    <ion-item>
+      <ion-toggle [(ngModel)]=darkmode (ionChange)="dark()"></ion-toggle>
+      <ion-label>夜间模式</ion-label>
+    </ion-item>
+    <button ion-item (click)="doLoginOut()">
+      <ion-label>退出登录</ion-label>
+    </button>
+  </ion-list>
+</ion-content>
