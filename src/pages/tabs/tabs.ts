@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
-import { MinePage } from '../mine/mine';
+import {Component} from '@angular/core';
+import {MinePage} from '../mine/mine';
+import {HomePage} from '../home/home';
 
 
 @Component({
@@ -11,10 +12,8 @@ export class TabsPage {
   tab2Root: any;
   tab3Root: any;
 
-  //params:any;
   constructor() {
-    //this.params={ref:true};
-    this.tab1Root = MinePage;
+    this.tab1Root = HomePage;
     this.tab2Root = MinePage;
     this.tab3Root = MinePage;
   }

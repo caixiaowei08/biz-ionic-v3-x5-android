@@ -19,6 +19,7 @@ import { StorageUtils } from '../pages/utils/StorageUtils';
 import { LoginPage } from '../pages/login/login';
 import {TabsPage} from '../pages/tabs/tabs';
 import {MinePage} from '../pages/mine/mine';
+import {HomePage} from '../pages/home/home';
 
 
 @NgModule({
@@ -26,7 +27,8 @@ import {MinePage} from '../pages/mine/mine';
     MyApp,
     LoginPage,
     TabsPage,
-    MinePage
+    MinePage,
+    HomePage
   ],
   imports: [
     BrowserModule,
@@ -42,7 +44,8 @@ import {MinePage} from '../pages/mine/mine';
     MyApp,
     LoginPage,
     TabsPage,
-    MinePage
+    MinePage,
+    HomePage
   ],
   providers: [
     StatusBar,
