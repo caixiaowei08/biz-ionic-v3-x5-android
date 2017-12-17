@@ -2,192 +2,192 @@ page-home {
   ::-webkit-scrollbar {
     display: none;
   }
-  ion-title{
-    .bookbt{
-      width:20px;
-      height:10px;
+  ion-title {
+    .subCourseDropListUp {
+      width: 20px;
+      height: 10px;
       background-image: url(../assets/images/toggle.png);
-      border:0;
+      border: 0;
       display: inline-block;
       background-size: auto 10px;
       margin-left: 6px;
     }
-    .bookbtt{
+    .subCourseDropListDown {
       background-position-x: -20px;
     }
   }
-  ion-slides{
-    height:100px !important;
-    padding:5px 5px;
+  ion-slides {
+    height: 100px !important;
+    padding: 5px 5px;
     background-color: #fff;
   }
-  ion-slide{
-    background-color:#fff;
+  ion-slide {
+    background-color: #fff;
     background-position: center;
     background-size: auto 100px;
     //background-repeat: no-repeat;
     cursor: pointer;
   }
-  .swiper-pagination{
+  .swiper-pagination {
     display: block !important;
   }
-  .score{
-    width:100%;
-    height:200px;
+  .score {
+    width: 100%;
+    height: 200px;
     //background-size: auto 200px;
     //background-position: center;
   }
-  .score ul{
-    padding:0;
-    margin:0;
-    width:100%;
-    height:200px;
+  .score ul {
+    padding: 0;
+    margin: 0;
+    width: 100%;
+    height: 200px;
     background-repeat: no-repeat;
     background-position: center;
     background-size: auto 200px;
     text-align: center;
   }
-  .score ul li{
+  .score ul li {
     display: inline-block;
-    margin-top:80px;
-    color:#fff;
+    margin-top: 80px;
+    color: #fff;
   }
-  .score ul li p{
-    padding:0;
-    margin:0;
+  .score ul li p {
+    padding: 0;
+    margin: 0;
   }
-  .score ul li:nth-child(1){
-    p{
+  .score ul li:nth-child(1) {
+    p {
       margin-bottom: 5px;
-      font-size:16px;
+      font-size: 16px;
     }
-    span{
-      font-size:12px;
-    }
-  }
-  .score ul li:nth-child(2){
-    width:150px;
-    margin:0px 10px 0px 10px;
-    p{
-      margin-bottom:5px;
-      font-size:16px;
-    }
-    span{
-      font-size:30px;
+    span {
+      font-size: 12px;
     }
   }
-  .score ul li:nth-child(3){
-    p{
+  .score ul li:nth-child(2) {
+    width: 150px;
+    margin: 0px 10px 0px 10px;
+    p {
       margin-bottom: 5px;
-      font-size:16px;
+      font-size: 16px;
     }
-    span{
-      font-size:12px;
+    span {
+      font-size: 30px;
     }
   }
-  .card{
-    padding:10px;
+  .score ul li:nth-child(3) {
+    p {
+      margin-bottom: 5px;
+      font-size: 16px;
+    }
+    span {
+      font-size: 12px;
+    }
   }
-  .card ul{
-    margin:0;
+  .card {
+    padding: 10px;
+  }
+  .card ul {
+    margin: 0;
     margin-bottom: 10px;
-    padding:0;
-    height:120px;
+    padding: 0;
+    height: 120px;
     background-color: #fff;
     border-radius: 20px;
     background-repeat: no-repeat;
     background-position: 20px 35px;
-    background-size:50px 50px;
+    background-size: 50px 50px;
     overflow: hidden;
-    cursor:pointer;
+    cursor: pointer;
   }
-  .card ul:not(.card-li):active{
-    background-color:color($colors,act);
+  .card ul:not(.card-li):active {
+    background-color: color($colors, act);
     transition-duration: 0ms;
   }
-  .card ul div{
-    margin-left:100px;
-    color:#333333;
-    margin-top:30px;
-    font-size:22px;
-    p{
-      padding:0;
-      margin:0;
-      margin-top:15px;
-      font-size:14px;
-      color:#999;
+  .card ul div {
+    margin-left: 100px;
+    color: #333333;
+    margin-top: 30px;
+    font-size: 22px;
+    p {
+      padding: 0;
+      margin: 0;
+      margin-top: 15px;
+      font-size: 14px;
+      color: #999;
     }
   }
-  .card .card-li{
-    width:100%;
-    background-color:inherit;
-    cursor:none;
+  .card .card-li {
+    width: 100%;
+    background-color: inherit;
+    cursor: none;
     margin-bottom: 0;
-    display:flex;
+    display: flex;
     justify-content: space-between;
   }
-  .card .card-li li{
-    width:32%;
+  .card .card-li li {
+    width: 32%;
     list-style: none;
     background-color: #fff;
-    height:120px;
-    padding-top:80px;
+    height: 120px;
+    padding-top: 80px;
     border-radius: 20px;
     background-repeat: no-repeat;
     background-position: center 20px;
-    background-size:50px 50px;
-    font-size:16px;
+    background-size: 50px 50px;
+    font-size: 16px;
     text-align: center;
-    cursor:pointer;
+    cursor: pointer;
   }
-  .card .card-li li:active{
-    background-color:color($colors,act);
+  .card .card-li li:active {
+    background-color: color($colors, act);
     transition-duration: 0ms;
   }
-  #bookpage{
+  #allCourseDropPage {
     display: none;
-    width:100%;
-    height:100%;
+    width: 100%;
+    height: 100%;
     background-color: #fff;
     position: absolute;
     z-index: 99;
-    top:50px;
-    #bookp1{
-      width:35%;
-      height:100%;
+    top: 50px;
+    #mainCourseList {
+      width: 35%;
+      height: 100%;
       position: absolute;
-      left:0;
-      top:0;
+      left: 0;
+      top: 0;
       background-color: #f1f1f1;
-      div{
-        width:100%;
-        font-size:14px;
+      div {
+        width: 100%;
+        font-size: 14px;
         box-sizing: border-box;
-        padding:10px;
+        padding: 10px;
         line-height: 18px;
       }
     }
-    #bookp2{
-      width:65%;
-      height:100%;
+    #subCourseList {
+      width: 65%;
+      height: 100%;
       position: absolute;
       left: 35%;
-      top:0;
-      button{
-        font-size:14px;
+      top: 0;
+      button {
+        font-size: 14px;
       }
     }
-    .activated{
-      color:color($colors,top);
-      background-color:#fff;
+    .mainChosen {
+      color: color($colors, top);
+      background-color: #fff;
     }
-    .activatedd{
-      .item-inner{
-        border-bottom-width:2px;
-        border-bottom-color: color($colors,top);
+    .subChosen {
+      .item-inner {
+        border-bottom-width: 2px;
+        border-bottom-color: color($colors, top);
       }
-      ion-label{
-        color:color($colors,top);
+      ion-label {
+        color: color($colors, top);
       }
     }
   }

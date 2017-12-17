@@ -1,12 +1,38 @@
 <!--头部信息-->
 <ion-header>
   <ion-navbar>
-    <ion-title (click)="chooseSubject()" style="padding: 0px 20px 1px;">
-      {{currentSubject.name}}&nbsp;<span style="font-size: small">[切换科目]</span>
+    <ion-title (click)="chooseSubjectClass();" style="padding: 0px 20px 1px;">
+      {{currentSubject.courseName}}&nbsp;<span style="font-size: small">[切换科目]</span>
       <div class="bookbt"></div>
     </ion-title>
   </ion-navbar>
 </ion-header>
+<!--下拉选择课程页面-->
+<div id="allCourseDropPage">
+  <div id="mainCourseList">
+    <div *ngFor="let mianCourse of allSubjects;let i=index" (click)="mainCourseIndex=i"
+         [class]="i==mainCourseIndex?'mainChosen':''">
+      {{mianCourse.mainCourseAppName}}
+    </div>
+  </div>
+
+  <div id="subCourseList">
+    <div *ngFor="let mianCourse of allSubjects;let i=index">
+      <div *ngIf="i==mainCourseIndex">
+        <div *ngFor="let subCourse of mianCourse.children;let j=index"
+             (click)="doSetCurrentSubCourse(i,j)"
+             [class]="(i==chosenMainCourseIndex&&j==chosenSubCourseIndex)?'subChosen':''">
+          <button ion-item>
+            <ion-label>{{subCourse.subCourseName}}</ion-label>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <ion-content no-padding>
+
 
 </ion-content>

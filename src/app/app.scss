@@ -1,6 +1,5 @@
 // http://ionicframework.com/docs/theming/
 
-
 // App Global Sass
 // --------------------------------------------------
 // Put style rules here that you want to apply globally. These
@@ -14,3 +13,83 @@
 // To declare rules for a specific mode, create a child rule
 // for the .md, .ios, or .wp mode classes. The mode class is
 // automatically applied to the <body> element in the app.
+::-webkit-scrollbar {
+  display: none;
+}
+
+//ion-app, ion-nav, ion-tab, ion-tabs, .app-root, .ion-page{
+ion-tabs, .ion-page {
+  contain: none !important;
+}
+
+ion-navbar {
+  min-height: 50px !important;
+}
+
+ion-navbar button {
+  color: #fff !important;
+}
+
+ion-navbar .toolbar-background {
+  background-color: color($colors, top) !important;
+}
+
+ion-navbar .toolbar-title {
+  color: #fff !important;
+}
+
+ion-title p {
+  padding: 0;
+  margin: 0;
+  font-size: 10px;
+  margin-top: 3px;
+}
+
+ion-navbar ion-label {
+  color: #fff !important;
+}
+
+ion-content {
+  background: #efeff4 !important;
+}
+
+.darklayer {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  background-color: #000;
+  opacity: 0.2;
+  z-index: 20000;
+  pointer-events: none;
+  display: none;
+}
+
+.darkmode {
+  filter: brightness(70%);
+  ion-content {
+    background: color($colors, dark) !important;
+  }
+  page-home {
+    .card ul {
+      background-color: #333;
+      div {
+        color: #fff;
+      }
+      p {
+        color: #888;
+      }
+    }
+    .card .card-li li {
+      background-color: #333;
+      color: #fff;
+    }
+  }
+  page-mine {
+    .minelist .item {
+      background-color: #333;
+      ion-label {
+        color: #fff;
+      }
+    }
+  }
+}

@@ -6,6 +6,8 @@ import {ShowMsgUtils} from '../../pages/utils/ShowMsgUtils';
 import {Storage} from '@ionic/storage';
 import {LoginPage} from '../login/login';
 
+import * as $ from "jquery";
+
 
 @Component({
   selector: 'page-home',
@@ -14,10 +16,19 @@ import {LoginPage} from '../login/login';
 
 export class HomePage {
 
+  @ViewChild(Slides) slide: Slides;
+
   /*当前课程信息 并设置默认值*/
-  currentSubject: any = {id: 0, name: '载入中...', exam: 0, video: 0, time: 0}
+  currentSubject: any = {id: 0, courseName: '载入中...', examAuth: 0, videoAuth: 0, videoClass: '', expirationTime: 0}
   /*所有的课程信息*/
   allSubjects: any;
+
+  /*主课程序列选择*/
+  mainCourseIndex: number;
+  /*选择的主课程序号*/
+  chosenMainCourseIndex: number;
+  chosenSubCourseIndex: number;
+
 
   constructor(public alertCtrl: AlertController,
               public modalCtrl: ModalController,
@@ -51,7 +62,6 @@ export class HomePage {
     let this_ = this;
     this_.httpUtils.HttpGet('/app/appSubCourseController.do?getCourseInfoByToken&token=' + token, data => {
       /*课程信息*/
-
       if (data == null || data == '') {
         /*获取本地课程数据*/
         this_.storageUtils.getStorage("allSubjects", data => {
@@ -67,24 +77,43 @@ export class HomePage {
         this_.storageUtils.setStorage("allSubjects", data.content);
         this_.allSubjects = data.content;
       }
-      /*设置初始第一个课程*/
-      //this.subject = this.getSubject(0, 0);
-      this_.currentSubject = this_.getSubject(0,0);
+      /*默认值 设置初始第一个课程*/
+      this_.mainCourseIndex = 0;
+      this_.setCurrentDefaultSubCourse();
     })
-
   }
 
-  /*获取当前的*/
-  getSubject(i, j) {
+  /*初始进入主页 设置默认的课程*/
+  setCurrentDefaultSubCourse(){
+    let this_ = this;
+    this_.setCurrentSubCourse(0, 0);
+  }
+
+  /*点击选择*/
+  doSetCurrentSubCourse(i: number, j: number){
+    let this_ = this;
+    this_.setCurrentSubCourse(i, j);
+    this_.chooseSubjectClass();
+  }
+
+  /*获取当前的  courseName 当前选择课程 名称courseName */
+  setCurrentSubCourse(i: number, j: number) {
+    let this_ = this;
+    this_.chosenMainCourseIndex = i;
+    this_.chosenSubCourseIndex = j;
+    /*设置当前课程的值*/
     let tmp = this.allSubjects[i].children[j];
-    return {
+    this_.currentSubject = {
       id: tmp.subCourseId,
-      name: tmp.subCourseName,
-      exam: tmp.examAuth,
-      video: tmp.videoAuth,
+      courseName: tmp.subCourseName,
+      examAuth: tmp.examAuth,
+      videoAuth: tmp.videoAuth,
       videoClass: tmp.videoClass,
-      time: tmp.expirationTime
+      expirationTime: tmp.expirationTime
     }
+
+    /*存储当前选择的课程信息入库*/
+    this_.storageUtils.setStorage("currentSubject", this_.currentSubject);
   }
 
 
@@ -96,7 +125,11 @@ export class HomePage {
     this_.app.getRootNav().setRoot(LoginPage);
   }
 
-
+  /*选择当前课程样式 下拉*/
+  chooseSubjectClass() {
+    $(".subCourseDropListUp").toggleClass("subCourseDropListDown");
+    $("#allCourseDropPage").slideToggle("normal");
+  }
 
 
 }
