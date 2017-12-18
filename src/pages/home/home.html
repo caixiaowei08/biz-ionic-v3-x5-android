@@ -33,6 +33,46 @@
 
 
 <ion-content no-padding>
+  <div class="score" style="background-image: url(assets/images/headb.jpg)">
+    <ul style="background-image: url(assets/images/head.jpg)">
+      <li>
+        <p>答对</p>
+        <span>{{currentSubCourseScore.right}}</span>
+      </li>
+      <li>
+        <p>已做题数</p>
+        <span>{{currentSubCourseScore.all}}</span>
+      </li>
+      <li>
+        <p>答错</p>
+        <span>{{currentSubCourseScore.wrong}}</span>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="slides.length>0">
+    <ion-slides autoplay=6000 speed=2000>
+      <ion-slide *ngFor="let item of slides;let i = index" [style.background-image]="getSlideImgByIndex(i)"
+                 (click)="goToSlideDetailInfo()"></ion-slide>
+    </ion-slides>
+  </div>
 
+  <div class="card">
+    <ul *ngFor="let module of modules;let i = index" [style.background-image]="module.picture"
+        (click)="goQuestionsListByType(i+1)"
+        [hidden]="moduleShows[i]==0">
+      <div>{{module.title}}<p>{{module.description}}</p></div>
+    </ul>
+    <ul class="card-li">
+      <li style="background-image:url(assets/images/item6.png)" (click)="goQuestionsListByType(10)">
+        错题
+      </li>
+      <li style="background-image:url(assets/images/item7.png)" (click)="goQuestionsListByType(11)">
+        收藏
+      </li>
+      <li style="background-image:url(assets/images/item8.png)" (click)="goQuestionsListByType(12)">
+        笔记
+      </li>
+    </ul>
+  </div>
 
 </ion-content>
