@@ -1,5 +1,5 @@
 import {Component, ViewChild} from '@angular/core';
-import {AlertController, ModalController, NavController, NavParams, Slides, App} from 'ionic-angular';
+import {NavController, Slides, App} from 'ionic-angular';
 import {HttpUtils} from '../../pages/utils/HttpUtils';
 import {StorageUtils} from '../../pages/utils/StorageUtils';
 import {ShowMsgUtils} from '../../pages/utils/ShowMsgUtils';
@@ -25,31 +25,28 @@ export class HomePage {
   currentSubject: { id: number, courseName: string, examAuth: number, videoAuth: number, videoClass: string, expirationTime: number };
   /*所有的课程信息*/
   allSubjects: any;
-
   /*登录标识*/
   token: any;
-
   /*主课程序列选择*/
   mainCourseIndex: number;
   /*选择的主课程序号*/
   chosenMainCourseIndex: number;
   chosenSubCourseIndex: number;
-
   /*轮播广告数据*/
   slides: any;
-
   /*所有的模块信息*/
   modules: any;
-
   moduleShows: any;
+
+  /*所有课程保存key值*/
+  allSubjectsKey: string = "all_subject_key";
+  currentSubjectsKey: string = "current_sub_course_key";
+
 
   /*当前课程做题记录 提交试卷之后统计*/
   currentSubCourseScore: { all: number, right: number, wrong: number }
 
-  constructor(public alertCtrl: AlertController,
-              public modalCtrl: ModalController,
-              public navCtrl: NavController,
-              public navParams: NavParams,
+  constructor(public navCtrl: NavController,
               public httpUtils: HttpUtils,
               public storageUtils: StorageUtils,
               public showMsgUtils: ShowMsgUtils,
@@ -59,7 +56,7 @@ export class HomePage {
     this.initData();
   }
 
-  /*初始化信息*/
+  /*每次页面载入初始化信息*/
   ionViewDidEnter() {
     let this_ = this;
     this_.storage.get("user").then(data => {
@@ -69,12 +66,11 @@ export class HomePage {
       } else {
         //加载课程相关信息
         this_.token = data.token;
-        this_.getSubjectInfo(data.token);
+        this_.loadSubjectInfo(data.token);
       }
     }).catch(err => {
       this_.doLoginOut();
     });
-
   }
 
   ionViewDidLoad() {
@@ -101,26 +97,31 @@ export class HomePage {
   }
 
   /*加载购买的课程信息*/
-  getSubjectInfo(token: string) {
+  loadSubjectInfo(token: string) {
     let this_ = this;
     this_.httpUtils.HttpGet('/app/appSubCourseController.do?getCourseInfoByToken&token=' + token, data => {
       /*课程信息*/
-      if (data == null || data == '') {
+      if (data == null) {
         /*获取本地课程数据*/
-        this_.storageUtils.getStorage("allSubjects", data => {
-          if (data == null || data == '') {
+        this_.storageUtils.getStorage(this_.allSubjectsKey, data => {
+          if (data == null) {
             this_.showMsgUtils.ShowAlertMsgSystemConfirm("网络未连接");
-            return;
           } else {
             this_.allSubjects = data;
+            this_.storageUtils.setStorage(this_.allSubjectsKey, this_.allSubjects);
             this_.setCurrentDefaultSubCourse();
           }
         });
       } else {
         /*获取网络课程数据*/
-        this_.storageUtils.setStorage("allSubjects", data.content);
-        this_.allSubjects = data.content;
-        this_.setCurrentDefaultSubCourse();
+        if (data.returnCode) {
+          this_.allSubjects = data.content;
+          this_.storageUtils.setStorage(this_.allSubjectsKey, this_.allSubjects);
+          this_.setCurrentDefaultSubCourse();
+        } else {
+          this_.showMsgUtils.ShowAlertMsgSystemConfirm("账号已在其他设备上登录！");
+          this_.doLoginOut();
+        }
       }
     })
   }
@@ -143,7 +144,7 @@ export class HomePage {
     let this_ = this;
     this_.chosenMainCourseIndex = i;
     this_.chosenSubCourseIndex = j;
-    /*设置当前课程的值*/
+
     let tmp = this_.allSubjects[i].children[j];
     this_.currentSubject = {
       id: tmp.subCourseId,
@@ -153,16 +154,12 @@ export class HomePage {
       videoClass: tmp.videoClass,
       expirationTime: tmp.expirationTime
     }
-
     /*存储当前选择的课程信息入库*/
-    this_.storageUtils.setStorage("currentSubject", this_.currentSubject);
+    this_.storageUtils.setStorage(this_.currentSubjectsKey, this_.currentSubject);
     /*加载轮播数据*/
     this_.downLoadSlides();
-
     /*加载课程模块信息 判断模块是否显示*/
     this_.checkAllModuleShow();
-
-
   }
 
   /*退出登录*/
@@ -227,7 +224,7 @@ export class HomePage {
   downloadModulesInfoBySubCourseId(subCourseId: number, type: number) {
     let this_ = this;
     /*模块存储名称*/
-    let subCourseStorageModuleKeyName = "module_" + subCourseId + "moduleType_" + this_.convertLocalToRemoteModuleMapping(type);
+    let subCourseStorageModuleKeyName = "module_" + subCourseId + "_moduleType_" + this_.convertLocalToRemoteModuleMapping(type);
     this_.httpUtils.HttpGet("/app/appModuleController.do?getModuleBySubCourseIdAndModuleType&subCourseId="
       + subCourseId + "&moduleType=" + this_.convertLocalToRemoteModuleMapping(type), data => {
       /*无网络状态*/
@@ -278,7 +275,7 @@ export class HomePage {
     return moduleType;
   }
 
-
+  /*跳转试题页面*/
   goQuestionsListByType(type: number) {
     let this_ = this;
     switch (type) {

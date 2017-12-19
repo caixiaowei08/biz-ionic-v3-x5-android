@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {Storage} from '@ionic/storage';
 
+
+
 @Injectable()
 export class StorageUtils {
 
@@ -35,5 +37,9 @@ export class StorageUtils {
   delAllStorage() {
     this.storage.clear();
   }
+
+
+
+
 
 }
