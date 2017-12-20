@@ -24,6 +24,8 @@ import {HomePage} from '../pages/home/home';
 import {FramePage} from '../pages/home/sub/frame/frame';
 import {ExerciseListPage} from '../pages/home/sub/exercise/exerciseList';
 
+import {NullPage} from '../pages/common/nullPage/nullPage';
+
 
 @NgModule({
   declarations: [
@@ -33,7 +35,8 @@ import {ExerciseListPage} from '../pages/home/sub/exercise/exerciseList';
     MinePage,
     HomePage,
     FramePage,
-    ExerciseListPage
+    ExerciseListPage,
+    NullPage
   ],
   imports: [
     BrowserModule,
@@ -52,8 +55,8 @@ import {ExerciseListPage} from '../pages/home/sub/exercise/exerciseList';
     MinePage,
     HomePage,
     FramePage,
-    ExerciseListPage
-
+    ExerciseListPage,
+    NullPage
   ],
   providers: [
     StatusBar,
